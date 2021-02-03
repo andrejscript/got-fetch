@@ -5,6 +5,7 @@ import Spinner from '../spinner/spinner';
 
 export default class ItemList extends Component {
   state = {
+    
     itemList: null,
   };
 

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import './characterPage.css';
 import ItemList from '../itemList/itemList';
-import CharDetails from '../charDetails/charDetails';
+import CharDetails, {Field} from '../charDetails/charDetails';
 import gotService from '../../services/gotService';
-import RowBlock from '../RowBlock/RowBlock';
+import RowBlock from '../rowBlock/rowBlock';
 
-export default class characterPage extends Component {
+export default class CharacterPage extends Component {
   gotService = new gotService();
 
   state = {
-    
-    selectedChar: null,
+    selectedChar: 130,
     error: false,
   };
 
-  onCharSelected = (id) => {
+  onItemSelected = (id) => {
     this.setState({
       selectedChar: id,
     });
@@ -27,19 +25,21 @@ export default class characterPage extends Component {
   render() {
     const itemList = (
       <ItemList
-        onItemSelected={this.onCharSelected}
+        onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllCharacters}
-        renderItem={({ name, gender }) => `${name} (${gender})`}
+        renderItem={({ name }) => `${name}`}
       />
     );
 
-    const charDetails = <CharDetails charId={this.state.selectedChar} />;
+    const charDetails = (
+      <CharDetails
+        // charId={this.state.selectedChar} 
+        >
+        <Field field='gender' label='Gender'/>
+        <Field field='born' label='Born'/>
+      </CharDetails>
+    )
 
-    return (
-      <RowBlock 
-        leftSide={itemList}
-        rightSide={charDetails}
-      />
-    );
+    return <RowBlock leftSide={itemList} rightSide={charDetails} />;
   }
 }
