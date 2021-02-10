@@ -33,13 +33,12 @@ export default class CharacterPage extends Component {
 
     const charDetails = (
       <CharDetails
-        // charId={this.state.selectedChar} 
-        >
+        charId={this.state.selectedChar}>
         <Field field='gender' label='Gender'/>
         <Field field='born' label='Born'/>
       </CharDetails>
     )
 
-    return <RowBlock leftSide={itemList} rightSide={charDetails} />;
+    return  <RowBlock leftCol={itemList} rightCol={charDetails} />;
   }
 }

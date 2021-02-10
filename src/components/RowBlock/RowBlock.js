@@ -2,15 +2,15 @@ import React from 'react';
 import { Col, Row } from 'reactstrap';
 
 
-const RowBlock = ({leftSide, rightSide}) => {
+const RowBlock = ({leftCol, rightCol}) => {
 
   return (
     <Row>
       <Col md='6'>
-        {leftSide}
+        {leftCol}
         </Col>
       <Col md='6'>
-        {rightSide}
+        {rightCol}
       </Col>
   </Row>
   )

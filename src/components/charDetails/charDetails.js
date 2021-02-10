@@ -4,18 +4,16 @@ import gotService from '../../services/gotService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 
-const Field = ({ item, field, label }) => {
+const Field = ({ char, field, label }) => {
   return (
     <li className={'list-group-item d-flex justify-content-between'}>
       <span className='term'>{label}</span>
-      <span>{item[field]}</span>
+      <span>{char[field]}</span>
     </li>
   );
 };
 
-export {
-  Field
-}
+export {Field}
 
 export default class CharDetails extends Component {
   gotService = new gotService();
@@ -36,7 +34,7 @@ export default class CharDetails extends Component {
     }
   }
 
-  onCharDetailsLoaded = (char) => {
+  onCharDetailsLoaded = (char) => {    
     this.setState({
       char,
       loading: false,
@@ -45,16 +43,14 @@ export default class CharDetails extends Component {
 
   updateChar() {
     const { charId } = this.props;
-    console.log(this.props);
-    
+   
     if (!charId) {
       return;
     }
 
     this.setState({ loading: true });
 
-    this.gotService
-      .getCharacter(charId)
+    this.gotService.getCharacter(charId)
       .then(this.onCharDetailsLoaded)
       .catch(() => this.onError());
   }
@@ -67,7 +63,11 @@ export default class CharDetails extends Component {
   }
 
   render() {
+
     const { char, loading, error } = this.state;
+    console.log(this.state);
+    
+    const { name } = char;
 
     if (!char && error) {
       return <ErrorMessage />;
@@ -83,13 +83,15 @@ export default class CharDetails extends Component {
       );
     }
 
-    const { name } = this.state.char;
-
     return (
       <div className='char-details rounded'>
         <h4>{name}</h4>
         <ul className='list-group list-group-flush'>
-          {this.props.children}
+          {
+            React.Children.map(this.props.children, (child) => {
+              return React.cloneElement(child, {char})
+            })
+          }
         </ul>
       </div>
     );

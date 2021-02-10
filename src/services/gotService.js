@@ -14,45 +14,42 @@ export default class gotService {
 
   getAllCharacters = async () => {
     const res = await this.getResource('characters?page=5&pageSize=10');
-    return res.map(this._transformCharacter)
-
-  }
+    return res.map(this._transformCharacter);
+  };
 
   getCharacter = async (id) => {
     const res = await this.getResource(`characters/${id}`);
     return this._transformCharacter(res);
-  }
+  };
 
-  isSet = (data) => {
-    return data ? data : '...no data'
-  }
+  isSet(data) {
+    return data ? data : '...no data';
+  };
 
   getAllHouses = async () => {
     const res = await this.getResource('/houses/');
-    return res.map(this._transformHouse)
-  }
+    return res.map(this._transformHouse);
+  };
 
   getHouse = async (id) => {
     const res = this.getResource(`/houses/${id}`);
     return this._transformHouse(res);
-  }
+  };
 
   getAllBooks = async () => {
     const res = await this.getResource('/books/');
-    return res.map(this._transformBook)
-  }
+    return res.map(this._transformBook);
+  };
 
   getBook = async (id) => {
     const res = this.getResource(`/books/${id}`);
     return this._transformBook(res);
-
-  }
+  };
 
   _extractId = (item) => {
     const idRegExp = /\/(\d*)$/;
     return item.url.match(idRegExp)[1];
-
-  } 
+  };
 
   _transformCharacter = (char) => {
     return {
@@ -63,9 +60,9 @@ export default class gotService {
       died: this.isSet(char.died),
       culture: this.isSet(char.culture),
     };
-  }
-  
-  _transformHouse = (house) => {    
+  };
+
+  _transformHouse = (house) => {
     return {
       id: this._extractId(house),
       name: this.isSet(house.name),
@@ -75,7 +72,7 @@ export default class gotService {
       overlord: this.isSet(house.overlord),
       ancestralWeapons: this.isSet(house.ancestralWeapons),
     };
-  }
+  };
 
   _transformBook = (book) => {
     return {
@@ -85,5 +82,5 @@ export default class gotService {
       publisher: this.isSet(book.publisher),
       released: this.isSet(book.released),
     };
-  }
+  };
 }
