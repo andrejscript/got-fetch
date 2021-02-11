@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ItemList from '../itemList/itemList';
 import ItemDetails, { Field } from '../itemDetails/itemDetails';
 import gotService from '../../services/gotService';
-import RowBlock from '../rowBlock/rowBlock';
+import RowBlock from '../rowBlock/RowBlock';
 
 export default class CharacterPage extends Component {
   gotService = new gotService();
