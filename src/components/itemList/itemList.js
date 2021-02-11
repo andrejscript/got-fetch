@@ -11,16 +11,15 @@ export default class ItemList extends Component {
   componentDidMount() {
     const { getData } = this.props;
 
-    getData()
-    .then((itemList) => {
+    getData().then((itemList) => {
       this.setState({ itemList });
     });
   }
 
   renderItems(arr) {
-    return arr.map(item => {
-      const {id} = item;
-      const label = this.props.renderItem(item);      
+    return arr.map((item) => {
+      const { id } = item;
+      const label = this.props.renderItem(item);
       return (
         <li
           key={id}
@@ -37,11 +36,7 @@ export default class ItemList extends Component {
     const { itemList } = this.state;
 
     if (!itemList) {
-      return (
-        <div className='char-details rounded'>
-          <Spinner />
-        </div>
-      );
+      return <Spinner />;
     }
 
     const items = this.renderItems(itemList);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ItemList from '../itemList/itemList';
-import CharDetails, {Field} from '../charDetails/charDetails';
+import ItemDetails, { Field } from '../itemDetails/itemDetails';
 import gotService from '../../services/gotService';
 import RowBlock from '../rowBlock/rowBlock';
 
@@ -8,7 +8,7 @@ export default class CharacterPage extends Component {
   gotService = new gotService();
 
   state = {
-    selectedChar: 130,
+    selectedChar: null,
     error: false,
   };
 
@@ -32,13 +32,16 @@ export default class CharacterPage extends Component {
     );
 
     const charDetails = (
-      <CharDetails
-        charId={this.state.selectedChar}>
-        <Field field='gender' label='Gender'/>
-        <Field field='born' label='Born'/>
-      </CharDetails>
-    )
+      <ItemDetails 
+        itemId={this.state.selectedChar}
+        getData={this.gotService.getCharacter} >
+          <Field field='gender' label='Gender' />
+          <Field field='born' label='Born' />
+          <Field field='died' label='Died' />
+          <Field field='culture' label='Culture' />
+      </ItemDetails>
+    );
 
-    return  <RowBlock leftCol={itemList} rightCol={charDetails} />;
+    return <RowBlock leftCol={itemList} rightCol={charDetails} />;
   }
 }
