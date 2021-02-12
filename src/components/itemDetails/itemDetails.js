@@ -42,7 +42,6 @@ export default class ItemDetails extends Component {
   updateItem() {
     const { itemId, getData } = this.props;    
     if (itemId === null) {
-      // console.log(itemId);
       return;
     }
 

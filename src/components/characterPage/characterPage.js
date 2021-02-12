@@ -45,3 +45,6 @@ export default class CharacterPage extends Component {
     return <RowBlock leftCol={itemList} rightCol={charDetails} />;
   }
 }
+
+
+
