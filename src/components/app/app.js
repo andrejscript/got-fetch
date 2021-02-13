@@ -3,8 +3,9 @@ import './app.css';
 import { Col, Row, Container } from 'reactstrap';
 import Header from '../header/header';
 import RandomChar from '../randomChar/randomChar';
-import CharacterPage from '../characterPage/characterPage';
-// import HousesPage from '../housesPage/housesPage';
+import CharactersPage from '../pages/charactersPage/charactersPage';
+import HousesPage from '../pages/housesPage/housesPage';
+import BooksPage from '../pages/booksPage/booksPage';
 
 import gotService from '../../services/gotService';
 
@@ -39,8 +40,9 @@ export default class App extends Component {
             onClick={this.toggleRandomChar}>
             Toggle Random Char
           </button>
-          <CharacterPage />
-          {/* <HousesPage /> */}
+          <CharactersPage />
+          <HousesPage />
+          <BooksPage />
 
 
         </Container>
