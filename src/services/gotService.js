@@ -1,6 +1,6 @@
 export default class gotService {
   constructor() {
-    this._apiURL = 'https://www.anapioficeandfire.com/api/';
+    this._apiURL = 'https://www.anapioficeandfire.com/api';
   }
 
   async getResource(url) {
@@ -9,21 +9,17 @@ export default class gotService {
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, status: ${res.status}`);
     }
-    return res.json();
+    return await res.json();
   }
 
   getAllCharacters = async () => {
-    const res = await this.getResource('characters?page=5&pageSize=10');
+    const res = await this.getResource('/characters?page=5&pageSize=10');
     return res.map(this._transformCharacter);
   };
 
   getCharacter = async (id) => {
-    const res = await this.getResource(`characters/${id}`);
+    const res = await this.getResource(`/characters/${id}`);
     return this._transformCharacter(res);
-  };
-
-  isSet(data) {
-    return data ? data : '...no data';
   };
 
   getAllHouses = async () => {
@@ -44,6 +40,10 @@ export default class gotService {
   getBook = async (id) => {
     const res = this.getResource(`/books/${id}`);
     return this._transformBook(res);
+  };
+
+  isSet(data) {
+    return data ? data : '...no data';
   };
 
   _extractId = (item) => {

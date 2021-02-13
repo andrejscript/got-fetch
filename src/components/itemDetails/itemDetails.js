@@ -12,10 +12,9 @@ const Field = ({ item, field, label }) => {
   );
 };
 
-export {Field}
+export { Field };
 
 export default class ItemDetails extends Component {
-
   state = {
     item: null,
     loading: true,
@@ -32,27 +31,28 @@ export default class ItemDetails extends Component {
     }
   }
 
-  onItemDetailsLoaded = (item) => {      
+  onItemDetailsLoaded = (item) => {
     this.setState({
       item,
       loading: false,
     });
   };
-
+  
   updateItem() {
-    const { itemId, getData } = this.props;    
-    if (itemId === null) {
+    const { itemId, getData } = this.props;
+    if (!itemId) {
       return;
     }
-
+    
     this.setState({ loading: true });
-
+    
     getData(itemId)
-      .then(this.onItemDetailsLoaded)
-      .catch(() => this.onError());
+    .then(this.onItemDetailsLoaded)
+    .catch(() => this.onError());
   }
-
+  
   onError() {
+    console.log(1)
     this.setState({
       item: null,
       error: true,
@@ -60,7 +60,6 @@ export default class ItemDetails extends Component {
   }
 
   render() {
-
     const {item, loading, error} = this.state;
 
     if (!item && error) {
@@ -76,18 +75,24 @@ export default class ItemDetails extends Component {
         </div>
       );
     }
-    
+
     const {name} = item;
-    
+
+    // if (!this.state.item) {
+    //   return (
+    //     <span className='select-error'>Please select item in the list</span>
+    //   );
+    // }
+    // const { item } = this.state;
+    // const { name } = item;
+
     return (
       <div className='char-details rounded'>
         <h4>{name}</h4>
         <ul className='list-group list-group-flush'>
-          {
-            React.Children.map(this.props.children, child => {
-              return React.cloneElement(child, {item})
-            })
-          }
+          {React.Children.map(this.props.children, (child) => {
+            return React.cloneElement(child, { item });
+          })}
         </ul>
       </div>
     );

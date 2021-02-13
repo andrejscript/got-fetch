@@ -27,11 +27,11 @@ export default class CharactersPage extends Component {
       <ItemList
         onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllCharacters}
-        renderItem={({ name }) => `${name}`}
+        renderItem={({ name }) => name}
       />
     );
 
-    const charDetails = (
+    const itemDetails = (
       <ItemDetails
         itemId={this.state.selectedChar}
         getData={this.gotService.getCharacter}>
@@ -42,6 +42,6 @@ export default class CharactersPage extends Component {
       </ItemDetails>
     );
 
-    return <RowBlock leftCol={itemList} rightCol={charDetails} />;
+    return <RowBlock leftCol={itemList} rightCol={itemDetails} />;
   }
 }

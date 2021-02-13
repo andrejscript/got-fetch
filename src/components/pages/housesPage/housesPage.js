@@ -27,11 +27,11 @@ export default class HousesPage extends Component {
       <ItemList
         onItemSelected={this.onItemSelected}
         getData={this.gotService.getAllHouses}
-        renderItem={({ name, region }) => `${name} (${region})`}
+        renderItem={({ name }) => name}
       />
     );
 
-    const houseDetails = (
+    const itemDetails = (
       <ItemDetails
         itemId={this.state.selectedHouse}
         getData={this.gotService.getHouse}>
@@ -43,6 +43,6 @@ export default class HousesPage extends Component {
       </ItemDetails>
     );
 
-    return <RowBlock leftCol={itemList} rightCol={houseDetails} />;
+    return <RowBlock leftCol={itemList} rightCol={itemDetails} />;
   }
 }
