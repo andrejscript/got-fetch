@@ -61,26 +61,22 @@ export default class ItemDetails extends Component {
 
   render() {
 
-    // if (!item && error) {
-    //   console.log(item);
-    //   return <ErrorMessage />;
-    // } else if (!item) {
-    //   return <span className='select-error'>Please select a character</span>;
-    // }
+    const {item, loading, error} = this.state;
 
-    // if (loading) {
-    //   return (
-    //     <div className='char-details rounded'>
-    //       <Spinner />
-    //     </div>
-    //   );
-    // }
+    if (!item && error) {
+      return <ErrorMessage />;
+    } else if (!item) {
+      return <span className='select-error'>Please select a character</span>;
+    }
 
-    if (!this.state.item) {
-      return <span className='select-error'>Please select item in the list</span>
-  }
-
-    const {item, loading, error} = this.state; 
+    if (loading) {
+      return (
+        <div className='char-details rounded'>
+          <Spinner />
+        </div>
+      );
+    }
+    
     const {name} = item;
 
     return (
