@@ -6,8 +6,8 @@ import RandomChar from '../randomChar/randomChar';
 import CharactersPage from '../pages/charactersPage/charactersPage';
 import HousesPage from '../pages/housesPage/housesPage';
 import BooksPage from '../pages/booksPage/booksPage';
-
 import gotService from '../../services/gotService';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 export default class App extends Component {
   gotService = new gotService();
@@ -27,26 +27,26 @@ export default class App extends Component {
     const char = this.state.showRandomChar ? <RandomChar /> : null;
 
     return (
-      <>
-        <Container>
-          <Header />
-        </Container>
-        <Container>
-          <Row>
-            <Col lg={{ size: 5, offset: 0 }}>{char}</Col>
-          </Row>
-          <button 
-            className={'toggle-btn'} 
-            onClick={this.toggleRandomChar}>
-            Toggle Random Char
-          </button>
-          <CharactersPage />
-          <HousesPage />
-          <BooksPage />
+      <Router>
+        <div className="app">
+          <Container>
+            <Header />
+          </Container>
+          <Container>
+            <Row>
+              <Col lg={{ size: 5, offset: 0 }}>{char}</Col>
+            </Row>
+            <button className={'toggle-btn'} onClick={this.toggleRandomChar}>
+              Toggle Random Char
+            </button>
 
-
-        </Container>
-      </>
+            <Route path='/characters' component={CharactersPage} />
+            <Route path='/houses' component={HousesPage} />
+            <Route path='/books' component={BooksPage} />
+           
+          </Container>
+        </div>
+      </Router>
     );
   }
 }
