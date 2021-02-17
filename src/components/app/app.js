@@ -6,6 +6,7 @@ import RandomChar from '../randomChar/randomChar';
 import CharactersPage from '../pages/charactersPage/charactersPage';
 import HousesPage from '../pages/housesPage/housesPage';
 import BooksPage from '../pages/booksPage/booksPage';
+import BooksItem from '../pages/booksItem/booksItem';
 import gotService from '../../services/gotService';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -28,7 +29,7 @@ export default class App extends Component {
 
     return (
       <Router>
-        <div className="app">
+        <div className='app'>
           <Container>
             <Header />
           </Container>
@@ -40,10 +41,11 @@ export default class App extends Component {
               Toggle Random Char
             </button>
 
+            <Route path='/' exact component={() => <h1>hello fuckers!</h1>} />
             <Route path='/characters' component={CharactersPage} />
             <Route path='/houses' component={HousesPage} />
-            <Route path='/books' component={BooksPage} />
-           
+            <Route path='/books' exact component={BooksPage} />
+            <Route path='/books/:id' render={() => <BooksItem />}/>
           </Container>
         </div>
       </Router>
