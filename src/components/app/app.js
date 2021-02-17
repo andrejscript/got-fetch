@@ -46,6 +46,7 @@ export default class App extends Component {
             <Route path='/houses' component={HousesPage} />
             <Route path='/books' exact component={BooksPage} />
             <Route path='/books/:id' render={() => <BooksItem />}/>
+            
           </Container>
         </div>
       </Router>
