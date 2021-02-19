@@ -77,15 +77,7 @@ export default class ItemDetails extends Component {
     }
 
     const {name} = item;
-
-    // if (!this.state.item) {
-    //   return (
-    //     <span className='select-error'>Please select item in the list</span>
-    //   );
-    // }
-    // const { item } = this.state;
-    // const { name } = item;
-
+    
     return (
       <div className='char-details rounded'>
         <h4>{name}</h4>
