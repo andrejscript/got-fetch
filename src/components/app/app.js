@@ -34,15 +34,16 @@ export default class App extends Component {
             <Header />
           </Container>
           <Container>
-            <Row>
+            {/* <Row>
               <Col lg={{ size: 5, offset: 0 }}>{char}</Col>
             </Row>
             <button className={'toggle-btn'} onClick={this.toggleRandomChar}>
               Toggle Random Char
-            </button>
+            </button> */}
             <Switch>
-              <Route path='/' exact component={() => <h1>hello fuckers!</h1>} />
+              <Route path='/' exact component={() => <h1 style={{color: 'white'}}>Welcome to main page</h1>} />
               <Route path='/characters' component={CharactersPage} />
+              <Route path='/random-char' component={CharactersPage} />
               <Route path='/houses'>
                 <HousesPage />
               </Route>

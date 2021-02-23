@@ -18,6 +18,9 @@ const Header = () => {
         <li>
           <Link to='/books/'>Books</Link>
         </li>
+        <li>
+          <Link to='/random-char/'>Random char</Link>
+        </li>
       </div>
     </div>
   );
