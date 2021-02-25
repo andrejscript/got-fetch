@@ -24,8 +24,10 @@ export default class App extends Component {
     });
   };
 
+  // char
+
   render() {
-    // const char = this.state.showRandomChar ? <RandomChar /> : null;
+    const char = this.state.showRandomChar ? <RandomChar /> : null;
 
     return (
       <Router>
@@ -35,10 +37,16 @@ export default class App extends Component {
           </Container>
           <Container>
             <Switch>
-              <Route path='/' exact component={() => <h1 style={{color: 'white'}}>Welcome to main page</h1>} />
+              <Route
+                path='/'
+                exact
+                component={() => (
+                  <h1 style={{ color: 'white' }}>Welcome to main page</h1>
+                )}
+              />
               <Route path='/characters' component={CharactersPage} />
               <Route path='/random-char' component={RandomChar} />
-              <Route path='/houses' component={HousesPage}/>
+              <Route path='/houses' component={HousesPage} />
               <Route path='/books' exact component={BooksPage} />
               <Route
                 path='/books/:id'
@@ -56,10 +64,11 @@ export default class App extends Component {
   }
 }
 
-
-            {/* <Row>
+{
+  /* <Row>
               <Col lg={{ size: 5, offset: 0 }}>{char}</Col>
             </Row>
             <button className={'toggle-btn'} onClick={this.toggleRandomChar}>
               Toggle Random Char
-            </button> */}
+            </button> */
+}
