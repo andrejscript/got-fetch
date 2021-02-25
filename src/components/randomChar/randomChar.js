@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
+import { Col, Row, Container } from 'reactstrap';
 import './randomChar.css';
 import gotService from '../../services/gotService';
 import Spinner from '../spinner/spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
 
 export default class RandomChar extends Component {
-
   gotService = new gotService();
 
   state = {
     char: {},
-    loading: true,
+    showRandomChar: true,
     error: false,
+    loading: true,
+  };
+
+  toggleRandomChar = () => {
+    this.setState({
+      showRandomChar: !this.state.showRandomChar,
+    });
   };
 
   updateChar = () => {
@@ -20,7 +27,7 @@ export default class RandomChar extends Component {
       .getCharacter(id)
       .then((char) => this.onCharLoaded(char))
       .catch(this.onError);
-  }
+  };
 
   onCharLoaded = (char) => {
     this.setState({
@@ -46,17 +53,27 @@ export default class RandomChar extends Component {
   }
 
   render() {
-    const { char, loading, error } = this.state,
+    const { char, loading, error, showRandomChar } = this.state,
       errorMessage = error ? <ErrorMessage /> : null,
       spinner = loading ? <Spinner /> : null,
-      content = !(loading || error) ? <View char={char} /> : null;
+      content = !(loading || error || showRandomChar) ? <View char={char} /> : null;
 
     return (
-      <div className='random-block rounded'>
-        {errorMessage}
-        {spinner}
-        {content}
-      </div>
+      <Container>
+
+       <Row>
+       <Col lg={{ size: 5, offset: 0 }}>
+        <div className='random-block rounded'>
+          {errorMessage}
+          {spinner}
+          {content}
+        </div>
+        <button className={'toggle-btn'} onClick={this.toggleRandomChar}>
+          Toggle Random Char
+        </button>
+        </Col>
+        </Row>
+      </Container>
     );
   }
 }

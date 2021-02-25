@@ -3,6 +3,7 @@ import ItemList from '../../itemList/itemList';
 import ErrorMessage from '../../errorMessage/errorMessage';
 import {withRouter} from 'react-router-dom';
 import gotService from '../../../services/gotService';
+import RandomChar from '../../randomChar/randomChar';
 
 class BooksPage extends Component {
   gotService = new gotService();
@@ -21,6 +22,8 @@ class BooksPage extends Component {
     }
 
     return (
+      <>
+      <RandomChar />
       <ItemList
         onItemSelected={(itemId) => {
           console.log(this.props.history)
@@ -29,6 +32,7 @@ class BooksPage extends Component {
         getData={this.gotService.getAllBooks}
         renderItem={({ name }) => `${name}`}
       />
+      </>
     );
   }
 }
