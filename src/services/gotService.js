@@ -7,9 +7,10 @@ export default class GotService {
       const res = await fetch(`${this._apiBase}${url}`);
   
       if (!res.ok) {
+          console.log(res);
         throw new Error(`Could not fetch ${url}` +
           `, received ${res.status}`);
-      }
+        }
       return await res.json();
   }
 
