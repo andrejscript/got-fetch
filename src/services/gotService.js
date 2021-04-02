@@ -47,7 +47,7 @@ export default class GotService {
       if (data) {
           return data
       } else {
-          return 'no data :('
+          return 'no data... :('
       }
   }
 
